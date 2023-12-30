@@ -1,7 +1,10 @@
-import { useEffect, useState } from "react"
+import { useContext, useEffect, useState } from "react"
+import Menu from "../components/Menu"
 import { getFileList, getFileStorageLink } from "../firebae/config"
+import { LoginContext } from "../Routing"
 
 function Source() {
+  const login = useContext(LoginContext)
   const [folder, setFolder] = useState<string[]>([])
   const [file, setFile] = useState<string[]>([])
 
@@ -17,6 +20,7 @@ function Source() {
   }, [window.location.pathname])
   return (
     <div>
+      {login?.value != null && <Menu />}
       {window.location.pathname != '/' &&
       <a href={'..'}>back</a>
       }
