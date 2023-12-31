@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react"
 import Menu from "../components/Menu"
-import { FileInfo, getFileList, getFileStorageLink } from "../firebae/config"
+import { FileInfo, getFileList, getFileStorageLink } from "../firebase/firebase"
 import { LoginContext } from "../Routing"
 import { StorageReference, deleteObject, getStorage, ref } from "firebase/storage"
 import { formatSize } from "../components/lib"

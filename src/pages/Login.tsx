@@ -1,5 +1,5 @@
 import { getAuth, signInWithPopup, signOut } from "firebase/auth"
-import { googleProvider } from "../firebae/config"
+import { googleProvider } from "../firebase/firebase"
 import { useContext, useEffect } from "react"
 import { LoginContext } from "../Routing"
 

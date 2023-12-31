@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { FileInfo, getFileList, getFileStorageLink } from "../firebae/config"
+import { FileInfo, getFileList, getFileStorageLink } from "../firebase/firebase"
 import { StorageReference } from "firebase/storage"
 import { formatSize } from "../components/lib"
 

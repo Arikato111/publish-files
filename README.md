@@ -21,6 +21,8 @@ the front end website for share files. it works with firebase.
     }
   }
   ```
+- #### config
+  - go to './src/firebase/config.ts' and enter firebase config.
 
 ### TODOs
 
