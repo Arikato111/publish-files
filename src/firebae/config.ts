@@ -1,10 +1,14 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider } from "firebase/auth";
-// TODO: Add SDKs for Firebase products that you want to use
-// https://firebase.google.com/docs/web/setup#available-libraries
 
-// Your web app's Firebase configuration
+/**
+ * urlFirebase is url get file from firbase. 
+ * If you know firebase, you can find it.
+ */
+const urlFirebase = "https://firebasestorage.googleapis.com/v0/b/source-54c83.appspot.com/o/";
+/**
+ * enter Firebase config here
+ */
 const firebaseConfig = {
   apiKey: "AIzaSyBIfO7TX8QciQYXLkbWUXulGIDjWZ1DBtE",
   authDomain: "source-54c83.firebaseapp.com",
@@ -14,7 +18,6 @@ const firebaseConfig = {
   appId: "1:347580500240:web:6e3dc6903347fab2ee3d95",
 };
 
-// Initialize Firebase
 const app = initializeApp(firebaseConfig);
 export const googleProvider = new GoogleAuthProvider();
 
@@ -27,7 +30,7 @@ export function getFileStorageLink(path: string): string {
   }
   console.log("path", path);
   path = encodeURIComponent(path);
-  let linkStorage = `https://firebasestorage.googleapis.com/v0/b/source-54c83.appspot.com/o/${path}?alt=media`;
+  let linkStorage = `${urlFirebase}${path}?alt=media`;
   return linkStorage;
 }
 
