@@ -20,7 +20,6 @@ function UploadFile() {
         if (file) {
             const storageRef = ref(getStorage(), window.location.pathname.replace("/admin", "/source") + file.name);
             uploadBytes(storageRef, file).then(() => {
-                alert("update success")
                 setFile(null)
                 if (inputFileRef.current)
                     inputFileRef.current.value = ""

@@ -19,13 +19,13 @@ function AdminSource() {
   }
 
   async function fetchFile() {
-    let { file:fi , folder } = await getFileList(window.location.pathname.replace("/admin/", "/source/"))
+    let { file: fi, folder } = await getFileList(window.location.pathname.replace("/admin/", "/source/"))
     setFolder(folder)
     setFile(fi)
   }
 
   useEffect(() => {
-    console.log(window.location.pathname)
+    document.title = location.pathname;
     fetchFile()
   }, [window.location.pathname])
   return (
@@ -33,21 +33,32 @@ function AdminSource() {
       {login?.value != null && <Menu />}
       {window.location.pathname != '/' &&
         <>
-        <a href={'..'}>back</a>
+          <a href={'..'}>back</a>
         </>
       }
-      {folder.map((fol, idx) => (
-        <p key={idx}><a href={`./${fol.name}/`}>{fol.name}/</a></p>
-      ))}
-      {
-        file.map((fi, idx) => (
-          <p key={idx}>
-            <a target="_blank" href={getFileStorageLink(window.location.pathname.replace("/admin", "/source") + fi.name)}>{fi.name}</a>
-            <span> {formatSize(fi.size)} </span>
-            <button onClick={() => deleteFile(window.location.pathname.replace("/admin", "/source") + fi.name)}>delete</button>
-          </p>
-        ))
-      }
+      <table>
+        {folder.map((fol, idx) => (
+          <tr key={idx}>
+            <td><a href={`./${fol.name}/`}>{fol.name}/</a></td>
+          </tr>
+        ))}
+        {
+          file.map((fi, idx) => (
+            <tr key={idx}>
+              <td>
+                <button onClick={() =>confirm("Are you sure to delete?") && deleteFile(window.location.pathname.replace("/admin", "/source") + fi.name)}>delete</button>
+              </td>
+ 
+              <td>
+                <a target="_blank" href={getFileStorageLink(window.location.pathname.replace("/admin", "/source") + fi.name)}>{fi.name}</a>
+              </td>
+              <td>
+                <span> {formatSize(fi.size)} </span>
+              </td>
+           </tr>
+          ))
+        }
+      </table>
     </div>
   )
 }
