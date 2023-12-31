@@ -1,0 +1,11 @@
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+table {
+    margin: 10px;
+}
+td {
+    padding: 0 10px;
+}

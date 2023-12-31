@@ -5,6 +5,7 @@ import Source from './pages/Source'
 import { Routes, Route, BrowserRouter } from 'react-router-dom'
 import { createContext, useEffect, useState } from 'react'
 import { User, getAuth, onAuthStateChanged } from 'firebase/auth'
+import AdminSource from './pages/AdminSource'
 
 export const LoginContext = createContext<{ value: User | null, set: Function } | null>(null)
 
@@ -22,13 +23,17 @@ export default function Routing() {
                 <a href="/"> home </a>
                 <a href="/source/"> source </a>
                 {login != null && (
-                    <a href="/login?logout">logout</a>
+                    <>
+                        <a href="/admin/"> admin </a>
+                        <a href="/login?logout"> logout </a>
+                    </>
                 )}
             </nav>
             <Routes>
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/source/*' element={<Source />} />
+                <Route path='/admin/*' element={<AdminSource />} />
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>

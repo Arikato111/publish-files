@@ -23,22 +23,44 @@ export function getFileStorageLink(path: string): string {
   if (path[0] == "/") {
     let path_arr = path.split("");
     delete path_arr[0];
-    path = path_arr.join('')
+    path = path_arr.join("");
   }
   console.log("path", path);
-  path = encodeURIComponent(path)
+  path = encodeURIComponent(path);
   let linkStorage = `https://firebasestorage.googleapis.com/v0/b/source-54c83.appspot.com/o/${path}?alt=media`;
   return linkStorage;
 }
 
-import { getStorage, ref, listAll } from "firebase/storage";
+import {
+  getStorage,
+  ref,
+  listAll,
+  StorageReference,
+  getMetadata,
+} from "firebase/storage";
+
+export type FileInfo = {
+  name: string;
+  fullPath: string;
+  size: number;
+  updated: string;
+};
+
 export async function getFileList(path: string) {
-  const folder: string[] = [];
-  const file: string[] = [];
+  // const folder: StorageReference[] = [];
+  const file: FileInfo[] = [];
   const storage = getStorage();
   const listRef = ref(storage, path);
   const res = await listAll(listRef);
-  res.items.forEach((f) => file.push(f.name));
-  res.prefixes.forEach((fol) => folder.push(fol.name));
-  return { folder, file };
+  console.log("item", res.items);
+  for (let i = 0; i < res.items.length; i++) {
+    let info = await getMetadata(ref(getStorage(), res.items[i].fullPath));
+    file.push({
+      fullPath: res.items[i].fullPath,
+      name: res.items[i].name,
+      size: info.size,
+      updated: info.updated,
+    });
+  }
+  return { folder: res.prefixes, file };
 }

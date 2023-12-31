@@ -3,15 +3,11 @@ import { FormEvent, useRef, useState } from "react"
 
 function CreateFolder() {
     const [folder, setFolder] = useState("")
-    function createFolder() {
-        const storage = getStorage()
-        const folderRef = ref(storage, folder)
-    }
     return <div>
-        <div>
-            <input type="text" value={folder} onChange={(e) => setFolder(e.target.value)} />
-            <button onClick={createFolder}>create</button>
-        </div>
+        <form action={window.location.pathname + `${folder}/`}>
+            <input type="text" value={folder} onChange={(e) => setFolder(e.target.value)} placeholder="create folder" />
+            <button>create</button>
+        </form>
     </div>
 
 }
@@ -22,12 +18,13 @@ function UploadFile() {
     function submitForm(e: FormEvent) {
         e.preventDefault()
         if (file) {
-            const storageRef = ref(getStorage(), window.location.pathname + file.name);
+            const storageRef = ref(getStorage(), window.location.pathname.replace("/admin", "/source") + file.name);
             uploadBytes(storageRef, file).then(() => {
                 alert("update success")
                 setFile(null)
                 if (inputFileRef.current)
                     inputFileRef.current.value = ""
+                window.location.reload()
             })
         }
     }
