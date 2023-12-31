@@ -15,6 +15,7 @@ function Source() {
   }
 
   useEffect(() => {
+    document.title = location.pathname;
     console.log(window.location.pathname)
     fetchFile()
   }, [window.location.pathname])
