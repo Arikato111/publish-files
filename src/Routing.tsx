@@ -33,7 +33,9 @@ export default function Routing() {
                 <Route path='/' element={<Home />} />
                 <Route path='/login' element={<Login />} />
                 <Route path='/source/*' element={<Source />} />
-                <Route path='/admin/*' element={<AdminSource />} />
+                {login != null && (
+                    <Route path='/admin/*' element={<AdminSource />} />
+                )}
                 <Route path='*' element={<NotFound />} />
             </Routes>
         </BrowserRouter>
