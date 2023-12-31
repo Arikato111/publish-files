@@ -18,7 +18,7 @@ const firebaseConfig = {
   appId: "1:347580500240:web:6e3dc6903347fab2ee3d95",
 };
 
-const app = initializeApp(firebaseConfig);
+initializeApp(firebaseConfig);
 export const googleProvider = new GoogleAuthProvider();
 
 export function getFileStorageLink(path: string): string {
@@ -38,7 +38,6 @@ import {
   getStorage,
   ref,
   listAll,
-  StorageReference,
   getMetadata,
 } from "firebase/storage";
 
