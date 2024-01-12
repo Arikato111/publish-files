@@ -13,12 +13,13 @@ export default async function hander(
       `${urlFirebase}${encodeURIComponent(file_path)}?alt=media`
     );
     res.setHeader("Content-Type", file.headers.get("Content-Type") ?? "");
-    if (file.status == 404) throw 404;
+    if (file.status == 404) throw "custom throw 404";
     res.send(Buffer.from(await file.arrayBuffer()));
   } catch (err) {
     res.json({
       status: 404,
       err,
+      path: req.url
     });
   }
 }
