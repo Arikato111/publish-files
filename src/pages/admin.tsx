@@ -41,6 +41,12 @@ function AdminSource() {
         setPathname(window.location.pathname)
         fetchFile()
     }, [router.asPath])
+    if (login?.value == null) return <div>
+        <Head>
+            <title>not found</title>
+        </Head>
+        <h3>Not found</h3>
+    </div>
     return (
         <div>
             <Head>
