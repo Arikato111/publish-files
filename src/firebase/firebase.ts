@@ -2,7 +2,9 @@ import { initializeApp } from "firebase/app";
 import { GoogleAuthProvider } from "firebase/auth";
 import { firebaseConfig, urlFirebase } from "./config";
 
-initializeApp(firebaseConfig);
+export function getInitialApp() {
+  initializeApp(firebaseConfig);
+}
 export const googleProvider = new GoogleAuthProvider();
 
 export function getFileStorageLink(path: string): string {

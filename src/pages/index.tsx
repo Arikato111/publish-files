@@ -1,10 +1,11 @@
+import Head from "next/head"
 import { useEffect } from "react"
 
 export default function Home() {
-    useEffect(() => {
-        document.title = "HOME/"
-    }, [])
-    return <div>
+   return <div>
+        <Head>
+            <title>HOME/</title>
+        </Head>
         <h3>README</h3>
         <ul>
             <li>เว็บไซต์สำหรับเผยแพร่ไฟล์ต่างๆ เพื่อจุดประสงค์ของการเปิดกว้างทางข้อมูล</li>
@@ -12,8 +13,6 @@ export default function Home() {
         </ul>
         <h4>การใช้งาน</h4>
         <ul>
-            <li>เว็บไซต์นี้เป็นเพียง Front-end ที่ทำงานร่วมกับ firebase จึงไม่สามารถดาวน์โหลดไฟล์ผ่าน terminal ได้โดยตรง</li>
-            <li>แต่อย่างไรก็ตาม หากพบวิธีก็จะทำการพัฒนาให้ใช้ได้ในอนาคต</li>
             <li>ไปที่ <a href="/source/">ไฟล์</a></li>
         </ul>
 

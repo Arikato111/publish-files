@@ -4,6 +4,7 @@ import { StorageReference } from "firebase/storage"
 import { formatSize } from "../components/lib"
 import { useRouter } from "next/router"
 import Link from "next/link"
+import Head from "next/head"
 
 function Source() {
     const router = useRouter()
@@ -15,7 +16,6 @@ function Source() {
         let { file, folder } = await getFileList(window.location.pathname)
         setFolder(folder)
         setFile(file)
-        console.log(file);
     }
 
     function previousPath(path: string) {
@@ -26,13 +26,14 @@ function Source() {
     }
 
     useEffect(() => {
-        document.title = location.pathname;
-        console.log(window.location.pathname)
         setPathname(window.location.pathname)
         fetchFile()
     }, [router.asPath])
     return (
         <div>
+            <Head>
+                <title>{router.asPath}</title>
+            </Head>
             {pathname != '/' &&
                 <Link href={previousPath(pathname)}>back</Link>
             }
@@ -40,7 +41,7 @@ function Source() {
                 <tbody>
                     {folder.map((fol, idx) => (
                         <tr key={idx}>
-                            <td><Link href={`/${router.asPath}/${fol.name}/`}>{fol.name}/</Link></td>
+                            <td><Link href={`${router.asPath}${fol.name}/`}>{fol.name}/</Link></td>
                         </tr>
                     ))}
                     {

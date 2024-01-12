@@ -5,7 +5,11 @@ const nextConfig = {
     return [
       {
         source: "/source/:path*/",
-        destination: "/folder/"
+        destination: "/folder"
+      },
+      {
+        source: "/admin/:path*/",
+        destination: "/admin"
       },
       {
         source: "/source/:path*",
