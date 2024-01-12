@@ -15,6 +15,9 @@ export default async function hander(
     res.setHeader("Content-Type", file.headers.get("Content-Type") ?? "");
     res.send(Buffer.from(await file.arrayBuffer()));
   } catch (err) {
-    res.status(404);
+    res.status(404).json({
+      status: 404,
+      err,
+    });
   }
 }
