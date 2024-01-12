@@ -4,17 +4,16 @@ const nextConfig = {
   async rewrites() {
     return [
       {
-        source: "/source/:path*",
-        destination: "/api/file",
-      },
-
-      {
         source: "/source/:path*/",
         destination: "/folder",
       },
       {
         source: "/admin/:path*/",
         destination: "/admin",
+      },
+      {
+        source: "/source/:path*",
+        destination: "/api/:path*",
       },
     ];
   },
