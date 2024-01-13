@@ -5,6 +5,7 @@ import { formatSize } from "../components/lib"
 import { useRouter } from "next/router"
 import Link from "next/link"
 import Head from "next/head"
+import { urlFirebase } from "@/firebase/config"
 
 function Source() {
     const router = useRouter()
@@ -48,7 +49,8 @@ function Source() {
                         file.map((fi, idx) => (
                             <tr key={idx}>
                                 <td>
-                                    <a target="_blank" href={fi.name}>{fi.name}</a>
+                                    {/* <a target="_blank" href={fi.name}>{fi.name}</a> */}
+                                    <a target="_blank" href={getFileStorageLink(router.asPath + fi.name)}>{fi.name}</a>
                                 </td>
                                 <td>
                                     <span> {formatSize(fi.size)} </span>

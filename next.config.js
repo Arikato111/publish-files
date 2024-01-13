@@ -1,7 +1,8 @@
 /** @type {import('next').NextConfig} */
+
 const nextConfig = {
   skipTrailingSlashRedirect: true,
-  async rewrites() {
+  async rewrites(a) {
     return [
       {
         source: "/source/:path*/",
